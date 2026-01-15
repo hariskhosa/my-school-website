@@ -55,5 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Optional: Add specific elements to observe if not using AOS
+    // --- Royal Minimalist Animations (Optional) ---
+    // (Future animations can go here)
+
 });

@@ -50,7 +50,7 @@
         <div class="hero-overlay"></div>
         <div class="container hero-content" data-aos="fade-up" style="padding-top: 0;">
             <h1 class="hero-title" style="font-size: 3.5rem;">Get in <span class="text-gradient-gold">Touch</span></h1>
-            <p class="font-classic" style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+            <p class="font-classic" style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #fff;">
                 We are here to answer your questions and guide you on your journey with IIFE.
             </p>
         </div>
@@ -132,22 +132,22 @@
                             <div style="margin-bottom: 20px;">
                                 <label class="font-classic"
                                     style="display: block; margin-bottom: 8px; font-weight: 600;">Your Name</label>
-                                <input type="text" placeholder="Full Name" required>
+                                <input type="text" name="fullName" placeholder="Full Name" required>
                             </div>
                             <div style="margin-bottom: 20px;">
                                 <label class="font-classic"
                                     style="display: block; margin-bottom: 8px; font-weight: 600;">Email Address</label>
-                                <input type="email" placeholder="email@example.com" required>
+                                <input type="email" name="email" placeholder="email@example.com" required>
                             </div>
                             <div style="margin-bottom: 20px;">
                                 <label class="font-classic"
                                     style="display: block; margin-bottom: 8px; font-weight: 600;">Phone Number</label>
-                                <input type="tel" placeholder="0300-1234567">
+                                <input type="tel" name="phone" placeholder="0300-1234567">
                             </div>
                             <div style="margin-bottom: 20px;">
                                 <label class="font-classic"
                                     style="display: block; margin-bottom: 8px; font-weight: 600;">Subject</label>
-                                <select>
+                                <select name="subject">
                                     <option>General Inquiry</option>
                                     <option>Admissions</option>
                                     <option>Careers</option>
@@ -157,7 +157,8 @@
                             <div style="margin-bottom: 30px;">
                                 <label class="font-classic"
                                     style="display: block; margin-bottom: 8px; font-weight: 600;">Message</label>
-                                <textarea rows="5" placeholder="How can we help you?" required></textarea>
+                                <textarea name="message" rows="5" placeholder="How can we help you?"
+                                    required></textarea>
                             </div>
                             <button type="submit" class="btn-heritage" style="width: 100%; justify-content: center;">
                                 Send Message <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>
@@ -218,8 +219,26 @@
         </div>
     </footer>
 
+    <!-- Mobile Bottom App Bar -->
+    <div class="mobile-app-bar">
+        <a href="index.html" class="app-icon">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="admission.html" class="app-icon main-action">
+            <i class="fas fa-plus"></i>
+        </a>
+        <a href="contact.html" class="app-icon active">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+    </div>
+
+    <!-- SweetAlert2 for Premium Popups -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/forms.js"></script>
     <script>AOS.init();</script>
 </body>
 

@@ -17,6 +17,8 @@
     /* Mapped Legacy Variables (For backward compatibility) */
     --primary-blue: var(--primary-main);
     --primary-maroon: var(--accent-maroon);
+    --primary-green: var(--primary-main);
+    /* Fix for missing variable */
     --accent-gold: var(--secondary-gold);
     --accent-gold-light: var(--secondary-gold-bright);
 
@@ -83,15 +85,25 @@ h3,
 h2,
 .font-heritage {
     font-family: 'Cinzel', serif;
-    color: var(--primary-blue);
+    color: var(--primary-main);
     letter-spacing: 0.5px;
     line-height: 1.2;
+    text-wrap: balance;
+    /* Fix for orphan words on headings */
+}
+
+h4,
+h5,
+h6 {
+    text-wrap: balance;
 }
 
 p,
 .font-classic {
     font-family: 'Lora', serif;
     color: var(--text-dark);
+    text-wrap: pretty;
+    /* Optimized line breaking for blocks */
 }
 
 .section-title {
@@ -318,58 +330,58 @@ p,
 
 /* Buttons */
 .btn-heritage {
-    background: var(--gradient-gold);
-    background-size: 200% auto;
-    color: var(--primary-dark);
-    /* Dark text on gold for better contrast */
-    padding: 16px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 10px 20px rgba(198, 168, 124, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.5);
-    /* 3D effect */
-    transition: all 0.4s var(--ease-smooth);
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    width: 100%;
+    max-width: 350px;
+    /* Controlled width */
+    margin: 0 auto;
+    padding: 20px 40px;
+
+    background: linear-gradient(135deg, #e3c472 0%, #bf953f 100%);
+    color: #0f3d33;
+    /* Deep Dark Green matching logo */
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    /* Bolder text */
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
     border: none;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(191, 149, 63, 0.35);
+    /* Premium shadow */
+
+    cursor: pointer;
     position: relative;
     overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 1;
 }
 
-.btn-heritage::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--secondary-gold-bright), var(--secondary-gold));
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.4s ease;
+.btn-heritage i {
+    margin-right: 15px;
+    font-size: 1.4rem;
+    transition: transform 0.4s ease;
 }
 
-/* Hover Effect - Shiny & Lift */
+/* Hover Effect - Lift & Shine */
 .btn-heritage:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(198, 168, 124, 0.6), inset 0 2px 0 rgba(255, 255, 255, 0.8);
-    background-position: right center;
-    color: var(--primary-main);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(191, 149, 63, 0.5);
+    background: linear-gradient(135deg, #f0dca8 0%, #d4af5f 100%);
+    /* Brighter Gold */
 }
 
-.btn-heritage:hover::before {
-    opacity: 1;
+.btn-heritage:hover i {
+    transform: translateX(8px) rotate(-15deg);
 }
 
-.btn-heritage:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(212, 168, 75, 0.4);
-    filter: brightness(1.1);
+.btn-heritage:active {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(191, 149, 63, 0.4);
 }
 
 .btn-outline {
@@ -459,174 +471,395 @@ p,
     pointer-events: none;
 }
 
-/* Mobile Navigation & responsiveness */
+/* =========================================
+   MOBILE APP-STYLE REDESIGN (Max-Width: 900px)
+   "Native App Feel" - Cards, Swipes, Bottom Bar
+   ========================================= */
 @media (max-width: 900px) {
-    .main-header .container {
-        position: relative;
+
+    /* --- global Reset for Mobile App Feel --- */
+    body {
+        background-color: #f2f2f7;
+        /* iOS Light Grey Background */
+        padding-bottom: 80px;
+        /* Space for Bottom Bar */
     }
 
-    .nav-bar {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background: rgba(15, 61, 62, 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: 0.5s var(--ease-elastic);
-        z-index: 999;
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    section {
+        background: #fff;
+        margin: 15px;
+        /* Float like a card */
+        padding: 30px 20px !important;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        /* Soft Card Shadow */
     }
 
-    .nav-bar.active {
-        right: 0;
+    .hero-section {
+        margin: 0;
+        border-radius: 0 0 30px 30px;
+        /* Rounded bottom only */
+        padding-top: 100px !important;
+        background: none;
+        /* Keep hero image */
+        box-shadow: none;
     }
 
-    .nav-links {
-        flex-direction: column;
-        gap: 30px !important;
+    .container {
+        padding: 0;
+        /* Let content fill the card */
+    }
+
+    /* --- Typography: iOS Standard --- */
+    html {
+        font-size: 15px;
+    }
+
+    .hero-title {
+        font-size: 2rem !important;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    h2,
+    .font-heritage {
+        font-size: 1.6rem !important;
+        color: var(--primary-main);
+        letter-spacing: -0.5px;
+        /* Modern tight spacing */
+    }
+
+    p,
+    .font-classic {
+        font-size: 1rem !important;
+        color: #333;
+        line-height: 1.5;
+    }
+
+    /* --- "Student Corner" / Features: HORIZONTAL SWIPE (Stories) --- */
+    .features-grid-2,
+    .branches-list .container>div,
+    .asymmetric-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        /* Force horizontal */
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: 15px !important;
+        padding-bottom: 20px;
+        margin: 0 -20px;
+        /* Bleed out of card */
+        padding: 0 20px 20px 20px;
+        /* Restore padding */
+
+        /* Hide Scrollbar */
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .features-grid-2::-webkit-scrollbar,
+    .branches-list .container>div::-webkit-scrollbar,
+    .asymmetric-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Items in swipe container */
+    .features-grid-2>div,
+    .heritage-card,
+    .asymmetric-grid>div {
+        min-width: 85%;
+        /* Shows next card peeking */
+        scroll-snap-align: center;
+        background: #fff;
+        border: 1px solid #efefef;
+        border-radius: 15px;
+        padding: 20px !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Fix for asymmetric grid images in swipe */
+    .asymmetric-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        /* Stack vertically for better reading */
+        gap: 40px !important;
+        overflow-x: visible !important;
+        /* No swipe for this section */
+        scroll-snap-type: none;
+        padding-bottom: 0;
+        margin: 0;
+    }
+
+    .asymmetric-grid.reversed {
+        display: flex !important;
+        flex-direction: column-reverse !important;
+        /* Image on top usually looks better, or keep as is. Let's do Image Top */
+    }
+
+    /* Specific override to keep features swipeable but text content stacked */
+    .asymmetric-grid>div {
+        min-width: 100%;
+        /* Full width */
+        border: none;
+        box-shadow: none;
+        padding: 0 !important;
+        background: transparent;
+    }
+
+    .image-stack {
         width: 100%;
-        text-align: center;
+        height: auto;
+        min-width: 100%;
+        margin-bottom: 20px;
     }
 
-    .nav-links a {
-        font-size: 1.2rem !important;
-        color: #fff !important;
-        opacity: 0;
-        transform: translateX(50px);
-        transition: 0.5s ease;
-    }
-
-    .nav-bar.active .nav-links a {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    /* Staggered Animation Delay loop would be in JS or individual classes, 
-       but here's a generic transition delay approach if supported or handled by nth-child */
-    .nav-bar.active .nav-links li:nth-child(1) a {
-        transition-delay: 0.1s;
-    }
-
-    .nav-bar.active .nav-links li:nth-child(2) a {
-        transition-delay: 0.2s;
-    }
-
-    .nav-bar.active .nav-links li:nth-child(3) a {
-        transition-delay: 0.3s;
-    }
-
-    .nav-bar.active .nav-links li:nth-child(4) a {
-        transition-delay: 0.4s;
-    }
-
-    .nav-bar.active .nav-links li:nth-child(5) a {
-        transition-delay: 0.5s;
-    }
-
-    .nav-bar.active .nav-links li:nth-child(6) a {
-        transition-delay: 0.6s;
-    }
-
-    .nav-bar.active .nav-links li:nth-child(7) a {
-        transition-delay: 0.7s;
+    .image-stack img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+        object-fit: cover;
     }
 
 
-    /* Hamburger Toggle */
+    /* --- Navigation: Clean Drawer --- */
     .mobile-toggle {
         display: block;
-        position: relative;
-        width: 30px;
-        height: 20px;
-        z-index: 1000;
         cursor: pointer;
+        z-index: 1002;
     }
 
     .mobile-toggle span {
         display: block;
-        width: 100%;
-        height: 2px;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
         background: var(--primary-main);
-        position: absolute;
-        transition: 0.4s ease;
-    }
-
-    .mobile-toggle span:nth-child(1) {
-        top: 0;
-    }
-
-    .mobile-toggle span:nth-child(2) {
-        top: 9px;
-    }
-
-    .mobile-toggle span:nth-child(3) {
-        bottom: 0;
-    }
-
-    /* Active State (X) */
-    .mobile-toggle.active span {
-        background: #fff;
-    }
-
-    /* White on dark menu */
-    .mobile-toggle.active span:nth-child(1) {
-        transform: rotate(45deg);
-        top: 9px;
+        border-radius: 3px;
     }
 
     .mobile-toggle.active span:nth-child(2) {
         opacity: 0;
     }
 
+    .mobile-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
     .mobile-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg);
-        bottom: 9px;
+        transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* Typography Adjustments */
-    .hero-title {
-        font-size: 2.5rem !important;
+    .nav-bar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 85%;
+        max-width: 350px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 100px 30px 40px;
+        transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 1001;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    .hero-motto {
-        font-size: 1rem !important;
+    .nav-bar.active {
+        left: 0;
     }
 
-    .section-title {
-        font-size: 2rem !important;
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+        width: 100%;
     }
 
-    section {
-        padding: 60px 0 !important;
-        /* Tighter spacing for mobile */
+    .nav-links li {
+        width: 100%;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.4s ease;
     }
 
-    .container {
-        padding: 0 20px;
-        /* Ensure content doesn't touch edges */
+    .nav-bar.active .nav-links li {
+        opacity: 1;
+        transform: translateX(0);
     }
 
-    .heritage-card {
-        padding: 25px !important;
-        /* Slightly less padding on cards */
+    /* Staggered animation for links */
+    .nav-bar.active .nav-links li:nth-child(1) {
+        transition-delay: 0.1s;
     }
 
-    .features-grid-2 {
-        grid-template-columns: 1fr;
-        /* Stack cards on mobile */
+    .nav-bar.active .nav-links li:nth-child(2) {
+        transition-delay: 0.15s;
+    }
+
+    .nav-bar.active .nav-links li:nth-child(3) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-bar.active .nav-links li:nth-child(4) {
+        transition-delay: 0.25s;
+    }
+
+    .nav-bar.active .nav-links li:nth-child(5) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-bar.active .nav-links li:nth-child(6) {
+        transition-delay: 0.35s;
+    }
+
+    .nav-bar.active .nav-links li:nth-child(7) {
+        transition-delay: 0.4s;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem !important;
+        font-family: 'Cinzel', serif;
+        color: var(--primary-main) !important;
+        font-weight: 600;
+        display: block;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: transparent;
+        color: var(--secondary-gold) !important;
+        padding-left: 10px;
+        box-shadow: none;
+    }
+
+
+    /* --- Forms: iOS Style Inputs --- */
+    .admission-form input,
+    .admission-form select,
+    .admission-form textarea {
+        background: #F2F2F7;
+        border: none;
+        padding: 18px;
+        border-radius: 12px;
+        font-size: 1rem;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .btn-heritage {
+        width: 100%;
+        border-radius: 12px;
+        padding: 18px;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 15px rgba(198, 168, 124, 0.4);
+    }
+
+    /* --- Bottom App Bar (Sticky) --- */
+    .mobile-app-bar {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 400px;
+        background: rgba(15, 61, 62, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 12px 25px;
+        border-radius: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        animation: slideUp 0.5s ease-out backwards 1s;
+    }
+
+    .app-icon {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.7rem;
+        gap: 5px;
+        opacity: 0.8;
+        transition: 0.3s;
+    }
+
+    .app-icon.main-action {
+        background: var(--gradient-gold);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        justify-content: center;
+        margin-top: -25px;
+        /* Floating action button effect */
+        color: #000;
+        font-size: 1.2rem;
+        opacity: 1;
+        box-shadow: 0 5px 15px rgba(198, 168, 124, 0.5);
+        border: 4px solid #f2f2f7;
+        /* Match body bg */
+    }
+
+    .app-icon i {
+        font-size: 1.2rem;
+    }
+
+    .app-icon.main-action i {
+        font-size: 1.5rem;
+    }
+
+
+    /* --- Footer: Card Style --- */
+    .main-footer {
+        margin: 0 15px 100px 15px;
+        /* Check bottom spacing */
+        border-radius: 20px;
+        background: #1a1a1a;
+        /* Keep dark */
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .main-footer .container>div {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-links a {
+        justify-content: center;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
     }
 }
 
 @media (min-width: 901px) {
-    .mobile-toggle {
+
+    .mobile-toggle,
+    .mobile-app-bar {
         display: none;
     }
 }
@@ -829,6 +1062,7 @@ section {
     display: flex;
     gap: 15px;
     margin-top: 25px;
+    justify-content: center;
 }
 
 .social-icon {
@@ -949,4 +1183,250 @@ section {
     border-color: var(--primary-blue);
     box-shadow: 0 0 0 4px rgba(30, 95, 138, 0.1);
     outline: none;
+}
+
+/* --- Critical Mobile Fixes for Inner Pages (Forced Overrides) --- */
+@media (max-width: 900px) {
+
+    /* 1. ACADEMICS: Force Vertical Stacking of Features */
+    .features-grid-2,
+    .features-grid-2.scrolling-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        overflow-x: visible !important;
+        gap: 30px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .features-grid-2>div {
+        min-width: 100% !important;
+        margin-right: 0 !important;
+    }
+
+    /* 2. TESTIMONIALS & BRANCHES: Stack Grids */
+    .testimonials-section .container>div,
+    .students-section .container>div,
+    .branches-list .container>div,
+    .branches-list .container>div.scrolling-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+        overflow-x: visible !important;
+    }
+
+    .branches-list .container>div>div {
+        min-width: 100% !important;
+    }
+
+    /* 3. FORMS: Stack Inputs (Admission & Contact) */
+    .inquiry-section form>div,
+    .admission-form form>div {
+        display: flex !important;
+        /* Override grid */
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    .inquiry-section input,
+    .inquiry-section select,
+    .admission-form input,
+    .admission-form select {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+
+    /* 4. TABLES: Scrollable Fee Structure */
+    table {
+        display: block !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        margin-bottom: 20px;
+    }
+
+    /* 5. GENERAL: Prevent Bottom Bar Overlap */
+    body {
+        padding-bottom: 100px !important;
+    }
+
+    section {
+        padding: 30px 15px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .container {
+        padding: 0 15px !important;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    /* Fix specifically for Admission Application Form where form has the class */
+    form.admission-form>div {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    /* Fix for Admission Process Steps (Squished Grid) */
+    .admission-process .container>div {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+
+    .admission-process .heritage-card {
+        margin-bottom: 20px;
+    }
+
+    /* Fix for Contact Info Grid (Call, Hours, Visit) */
+    .contact-info .container>div {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important;
+    }
+}
+
+/* --- Premium Fee Structure Redesign --- */
+
+/* Desktop: Floating Premium Rows */
+.fee-table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    /* Creates space between rows */
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+.fee-table thead th {
+    background: var(--gradient-gold);
+    color: white;
+    padding: 20px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+}
+
+.fee-table thead th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.fee-table thead th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.fee-table tbody tr {
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fee-table tbody tr:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    position: relative;
+}
+
+.fee-table tbody td {
+    padding: 25px;
+    border: none;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.fee-table tbody td:first-child {
+    border-left: 1px solid #f0f0f0;
+    border-radius: 10px 0 0 10px;
+    font-size: 1.1rem;
+    color: var(--primary-green);
+}
+
+.fee-table tbody td:last-child {
+    border-right: 1px solid #f0f0f0;
+    border-radius: 0 10px 10px 0;
+    font-weight: bold;
+    color: var(--primary-maroon);
+}
+
+
+/* Mobile: Card Transformation */
+@media (max-width: 768px) {
+    .fee-table {
+        display: block;
+        width: 100%;
+    }
+
+    .fee-table thead,
+    .fee-table tbody,
+    .fee-table th,
+    .fee-table td,
+    .fee-table tr {
+        display: block;
+    }
+
+    /* Hide standard header */
+    .fee-table thead {
+        display: none;
+    }
+
+    .fee-table tbody tr {
+        margin-bottom: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        /* Stronger shadow for card */
+        border: 1px solid #eee;
+        background: white;
+        overflow: hidden;
+    }
+
+    .fee-table tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 15px 20px;
+        border: none;
+        border-bottom: 1px solid #eee;
+        font-size: 0.95rem;
+    }
+
+    .fee-table tbody td:last-child {
+        border-bottom: none;
+        border-right: none;
+        border-radius: 0;
+    }
+
+    .fee-table tbody td:first-child {
+        background: var(--primary-main);
+        color: white;
+        font-weight: bold;
+        justify-content: center;
+        text-align: center;
+        border-radius: 0;
+        font-size: 1.1rem;
+        padding: 15px;
+        letter-spacing: 1px;
+    }
+
+    /* Add Labels via pseudo-element */
+    .fee-table tbody td:not(:first-child)::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: #888;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+    }
 }

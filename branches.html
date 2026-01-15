@@ -80,8 +80,9 @@
                         style="color: var(--primary-green); font-weight: bold; font-size: 0.8rem; text-transform: uppercase;">Boys
                         Campus</span>
                     <h3 class="font-heritage" style="margin: 10px 0;">Syedna Abu Bakr Siddiq</h3>
-                    <p class="font-classic"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Plot 46/8
-                        Molana Md. Ali Road Gujrat Colony, Jamshed Road No.1</p>
+                    <p class="font-classic"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> House#
+                        518,
+                        Shikarpur Colony Near Mazar-e-quaid. Jamshed town. Karachi.</p>
                     <p class="font-classic" style="margin-top: 15px;">Tel: 34864620</p>
                 </div>
 
@@ -96,6 +97,30 @@
                         793, Jamshed Road No.1, Karachi</p>
                     <p class="font-classic" style="margin-top: 15px;">Tel: 34914958</p>
                 </div>
+
+                <!-- Branch Card 4: Syedna Ali Murtaza -->
+                <div class="heritage-card" style="padding: 30px; border-top-color: var(--primary-blue);"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <span
+                        style="color: var(--primary-blue); font-weight: bold; font-size: 0.8rem; text-transform: uppercase;">Girls
+                        Campus</span>
+                    <h3 class="font-heritage" style="margin: 10px 0;">Syedna Ali Murtaza</h3>
+                    <p class="font-classic"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> 24/6
+                        Sehwani
+                        Colony, Near Meerut Kabab House. Grumandir Karachi.</p>
+                    <p class="font-classic" style="margin-top: 15px;">Tel: 34915036, 34915142</p>
+                </div>
+
+                <!-- Branch Card 5: Syedna Khalid Bin Waleed -->
+                <div class="heritage-card" style="padding: 30px; border-top-color: var(--accent-gold);"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <span
+                        style="color: var(--accent-gold); font-weight: bold; font-size: 0.8rem; text-transform: uppercase;">Campus</span>
+                    <h3 class="font-heritage" style="margin: 10px 0;">Syedna Khalid Bin Waleed</h3>
+                    <p class="font-classic"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> C.Road,
+                        Line No.3, Near Mangroll Ghanchi Jamat Khana, Bihar Colony.</p>
+                    <p class="font-classic" style="margin-top: 15px;">Cell: 0321-2316048</p>
+                </div>
             </div>
         </div>
     </section>
@@ -108,19 +133,22 @@
                 <h2 class="font-heritage" style="text-align: center; margin-bottom: 30px;">Admission Inquiry</h2>
                 <form>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-                        <input type="text" placeholder="Full Name"
+                        <input type="text" name="fullName" placeholder="Full Name"
                             style="padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
-                        <input type="text" placeholder="Phone Number"
+                        <input type="text" name="phone" placeholder="Phone Number"
                             style="padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
                     </div>
-                    <select
+                    <select name="branchPreferred"
                         style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 20px;">
-                        <option>Select Branch</option>
-                        <option>Grumandir</option>
-                        <option>Gujrat Colony</option>
-                        <option>Jamshed Road</option>
+                        <option value="">Select Branch</option>
+                        <option>Head Office - Grumandir</option>
+                        <option>Syedna Obai Bin Kaab - Grumandir</option>
+                        <option>Syedna Abu Bakr Siddiq - Gujrat Colony</option>
+                        <option>Syedna Umar Farooq - Jamshed Road</option>
+                        <option>Syedna Ali Murtaza - Sehwani Colony</option>
+                        <option>Syedna Khalid Bin Waleed - Bihar Colony</option>
                     </select>
-                    <textarea placeholder="Message"
+                    <textarea name="message" placeholder="Message"
                         style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 20px;"
                         rows="4"></textarea>
                     <button type="submit" class="btn-heritage" style="width: 100%;">Submit Inquiry</button>
@@ -176,8 +204,26 @@
         </div>
     </footer>
 
+    <!-- Mobile Bottom App Bar -->
+    <div class="mobile-app-bar">
+        <a href="index.html" class="app-icon">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="admission.html" class="app-icon main-action">
+            <i class="fas fa-plus"></i>
+        </a>
+        <a href="contact.html" class="app-icon">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+    </div>
+
+    <!-- SweetAlert2 for Premium Popups -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/forms.js"></script>
     <script>AOS.init();</script>
 </body>
 
